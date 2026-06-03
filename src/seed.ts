@@ -168,15 +168,24 @@ async function run() {
   await payload.updateGlobal({ slug: 'site-settings', locale: 'tr', overrideAccess: true, data: { tagline: tr.footer.tagline } as never })
   await payload.updateGlobal({ slug: 'site-settings', locale: 'ar', overrideAccess: true, data: { tagline: ar.footer.tagline } as never })
 
-  // Ana sayfa istatistikleri (global)
-  await payload.updateGlobal({
-    slug: 'home-content',
-    locale: 'en',
-    overrideAccess: true,
-    data: { stats: en.trust.stats.map((s) => ({ value: s.value, label: s.label })) } as never,
+  // Ana sayfa içeriği (global) — hero, istatistikler, süreç, hakkımda (3 dil)
+  const homeData = (d: typeof en) => ({
+    heroEyebrow: d.hero.eyebrow,
+    heroTitle: d.hero.title,
+    heroHighlight: d.hero.highlight,
+    heroSubtitle: d.hero.subtitle,
+    primaryCtaLabel: d.hero.primaryCta,
+    secondaryCtaLabel: d.hero.secondaryCta,
+    stats: d.trust.stats.map((s) => ({ value: s.value, label: s.label })),
+    processTitle: d.process.title,
+    processSubtitle: d.process.subtitle,
+    processSteps: d.process.steps.map((s) => ({ title: s.title, description: s.description })),
+    aboutTitle: d.about.title,
+    aboutBody: d.about.body,
   })
-  await payload.updateGlobal({ slug: 'home-content', locale: 'tr', overrideAccess: true, data: { stats: tr.trust.stats.map((s) => ({ value: s.value, label: s.label })) } as never })
-  await payload.updateGlobal({ slug: 'home-content', locale: 'ar', overrideAccess: true, data: { stats: ar.trust.stats.map((s) => ({ value: s.value, label: s.label })) } as never })
+  for (const [locale, d] of [['en', en], ['tr', tr], ['ar', ar]] as const) {
+    await payload.updateGlobal({ slug: 'home-content', locale, overrideAccess: true, data: homeData(d) as never })
+  }
 
   payload.logger.info('✅ Seed complete.')
   process.exit(0)
