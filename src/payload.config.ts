@@ -60,7 +60,8 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      // Vercel Postgres bazen DATABASE_URL yerine POSTGRES_URL enjekte eder — ikisini de destekle.
+      connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL || '',
     },
   }),
   sharp,

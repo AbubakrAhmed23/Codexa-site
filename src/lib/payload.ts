@@ -6,7 +6,7 @@ import type { Locale } from '@/i18n/config'
 // böylece bağlantı kurulamadığında oluşacak unhandledRejection / çökme önlenir; site fallback
 // içerikle render olur.)
 export function isDbConfigured(): boolean {
-  const url = process.env.DATABASE_URL
+  const url = process.env.DATABASE_URL || process.env.POSTGRES_URL
   return Boolean(url) && !url!.includes('user:pass@localhost')
 }
 
