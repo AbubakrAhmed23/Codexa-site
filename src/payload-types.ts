@@ -69,6 +69,12 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    projects: Project;
+    services: Service;
+    'pricing-plans': PricingPlan;
+    testimonials: Testimonial;
+    faq: Faq;
+    leads: Lead;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,18 +84,30 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    'pricing-plans': PricingPlansSelect<false> | PricingPlansSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    faq: FaqSelect<false> | FaqSelect<true>;
+    leads: LeadsSelect<false> | LeadsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
-  fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
-  locale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'tr' | 'ar') | ('en' | 'tr' | 'ar')[];
+  globals: {
+    'site-settings': SiteSetting;
+    'home-content': HomeContent;
+  };
+  globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'home-content': HomeContentSelect<false> | HomeContentSelect<true>;
+  };
+  locale: 'en' | 'tr' | 'ar';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -122,7 +140,11 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
+  /**
+   * Yönetim panelinde görünen ad.
+   */
+  name?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -147,8 +169,11 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
-  alt: string;
+  id: number;
+  /**
+   * Erişilebilirlik ve SEO için görsel açıklaması.
+   */
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -160,13 +185,233 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    feature?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    og?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * Portföy çalışmaları / case study'ler. Sürükle-bırak yerine "order" alanı ile sıralanır.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  /**
+   * Müşteri / marka adı
+   */
+  client?: string | null;
+  /**
+   * URL için benzersiz tekil ad (örn: acme-store). Boş bırakılırsa başlıktan üretilir.
+   */
+  slug?: string | null;
+  category?: ('landing' | 'corporate' | 'portfolio' | 'ecommerce') | null;
+  /**
+   * Kapak görseli. Boşsa gradient yer tutucu gösterilir.
+   */
+  coverImage?: (number | null) | Media;
+  /**
+   * Kart üzerinde görünen kısa açıklama.
+   */
+  summary?: string | null;
+  /**
+   * Sonuç odaklı vurgu, örn: "%40 dönüşüm artışı".
+   */
+  resultMetric?: string | null;
+  /**
+   * Kullanılan teknolojiler / hizmet etiketleri.
+   */
+  tags?:
+    | {
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Canlı proje linki (opsiyonel).
+   */
+  projectUrl?: string | null;
+  gallery?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Öne çıkan projeler önce gösterilir.
+   */
+  featured?: boolean | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Sunduğun hizmetler. 3 dilde başlık/açıklama girilebilir.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title: string;
+  description?: string | null;
+  icon?:
+    | (
+        | 'layout'
+        | 'layers'
+        | 'shopping-cart'
+        | 'briefcase'
+        | 'code'
+        | 'palette'
+        | 'rocket'
+        | 'gauge'
+        | 'search'
+        | 'smartphone'
+        | 'pen-tool'
+        | 'sparkles'
+      )
+    | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Fiyatlandırma paketleri. Fiyatı buradan istediğin zaman değiştirebilirsin.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-plans".
+ */
+export interface PricingPlan {
+  id: number;
+  /**
+   * Paket adı, örn: Başlangıç / Profesyonel / Kurumsal
+   */
+  name: string;
+  /**
+   * Paketin kime uygun olduğunu anlatan kısa cümle.
+   */
+  tagline?: string | null;
+  /**
+   * örn: "₺15.000" veya "$1,200" — istediğin biçimde.
+   */
+  price: string;
+  /**
+   * örn: "/ proje", "/ ay" (opsiyonel)
+   */
+  period?: string | null;
+  features?:
+    | {
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Buton metni, örn: "Hemen Başla" (boşsa varsayılan kullanılır).
+   */
+  ctaLabel?: string | null;
+  /**
+   * "Önerilen" rozeti ekler ve paketi vurgular.
+   */
+  highlighted?: boolean | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Müşteri yorumları — güven inşası için sosyal kanıt.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  quote: string;
+  author: string;
+  company?: string | null;
+  /**
+   * Ünvan, örn: "Kurucu", "Pazarlama Müdürü"
+   */
+  role?: string | null;
+  avatar?: (number | null) | Media;
+  rating?: number | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Sık sorulan sorular.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq".
+ */
+export interface Faq {
+  id: number;
+  question: string;
+  answer: string;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Siteden gelen proje talepleri (brief formu).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leads".
+ */
+export interface Lead {
+  id: number;
+  name: string;
+  email: string;
+  projectType?: ('landing' | 'corporate' | 'portfolio' | 'ecommerce' | 'other') | null;
+  budget?: ('tier1' | 'tier2' | 'tier3' | 'tier4') | null;
+  timeline?: ('urgent' | 'month' | 'quarter' | 'flexible') | null;
+  message?: string | null;
+  /**
+   * Formun gönderildiği dil.
+   */
+  locale?: string | null;
+  status?: ('new' | 'contacted' | 'won' | 'lost') | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -183,20 +428,44 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'pricing-plans';
+        value: number | PricingPlan;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'faq';
+        value: number | Faq;
+      } | null)
+    | ({
+        relationTo: 'leads';
+        value: number | Lead;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -206,10 +475,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -229,7 +498,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -240,6 +509,7 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -274,6 +544,155 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        feature?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        og?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  client?: T;
+  slug?: T;
+  category?: T;
+  coverImage?: T;
+  summary?: T;
+  resultMetric?: T;
+  tags?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
+  projectUrl?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  featured?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  icon?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-plans_select".
+ */
+export interface PricingPlansSelect<T extends boolean = true> {
+  name?: T;
+  tagline?: T;
+  price?: T;
+  period?: T;
+  features?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
+  ctaLabel?: T;
+  highlighted?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  quote?: T;
+  author?: T;
+  company?: T;
+  role?: T;
+  avatar?: T;
+  rating?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq_select".
+ */
+export interface FaqSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leads_select".
+ */
+export interface LeadsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  projectType?: T;
+  budget?: T;
+  timeline?: T;
+  message?: T;
+  locale?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -314,6 +733,180 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Marka, logo, iletişim ve sosyal bağlantılar.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  brandName?: string | null;
+  /**
+   * Logo altında / SEO için kısa slogan.
+   */
+  tagline?: string | null;
+  logo?: (number | null) | Media;
+  email?: string | null;
+  phone?: string | null;
+  /**
+   * WhatsApp numarası (ülke koduyla, örn: 905347986776). Form ve sağ alttaki buton buraya yönlendirir.
+   */
+  whatsapp?: string | null;
+  location?: string | null;
+  /**
+   * Calendly / randevu linki (opsiyonel).
+   */
+  calendarUrl?: string | null;
+  socials?:
+    | {
+        platform: 'github' | 'linkedin' | 'x' | 'instagram' | 'dribbble' | 'behance' | 'youtube' | 'whatsapp';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  /**
+   * Sosyal paylaşım önizleme görseli (1200x630).
+   */
+  ogImage?: (number | null) | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Hero, istatistikler, süreç adımları ve Hakkımda bölümü metinleri.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-content".
+ */
+export interface HomeContent {
+  id: number;
+  /**
+   * Başlığın üstündeki küçük etiket, örn: "Dijital Ajans".
+   */
+  heroEyebrow?: string | null;
+  heroTitle: string;
+  /**
+   * Başlık içinde vurgulanacak (renkli) kelime/öbek.
+   */
+  heroHighlight?: string | null;
+  heroSubtitle?: string | null;
+  primaryCtaLabel?: string | null;
+  secondaryCtaLabel?: string | null;
+  /**
+   * Güven şeridi sayaçları, örn: "20+ proje".
+   */
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  clientLogos?:
+    | {
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  processTitle?: string | null;
+  processSubtitle?: string | null;
+  /**
+   * Nasıl çalıştığını anlatan adımlar (Keşif → Tasarım → ...).
+   */
+  processSteps?:
+    | {
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  aboutTitle?: string | null;
+  aboutBody?: string | null;
+  aboutPhoto?: (number | null) | Media;
+  skills?:
+    | {
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  brandName?: T;
+  tagline?: T;
+  logo?: T;
+  email?: T;
+  phone?: T;
+  whatsapp?: T;
+  location?: T;
+  calendarUrl?: T;
+  socials?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  metaTitle?: T;
+  metaDescription?: T;
+  ogImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-content_select".
+ */
+export interface HomeContentSelect<T extends boolean = true> {
+  heroEyebrow?: T;
+  heroTitle?: T;
+  heroHighlight?: T;
+  heroSubtitle?: T;
+  primaryCtaLabel?: T;
+  secondaryCtaLabel?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  clientLogos?:
+    | T
+    | {
+        logo?: T;
+        id?: T;
+      };
+  processTitle?: T;
+  processSubtitle?: T;
+  processSteps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  aboutTitle?: T;
+  aboutBody?: T;
+  aboutPhoto?: T;
+  skills?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

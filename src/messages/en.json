@@ -1,0 +1,145 @@
+{
+  "nav": {
+    "services": "Services",
+    "portfolio": "Work",
+    "pricing": "Pricing",
+    "about": "About",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Get a quote"
+  },
+  "hero": {
+    "eyebrow": "Freelance Web Studio",
+    "title": "We design digital experiences that",
+    "highlight": "convert",
+    "subtitle": "Premium landing pages, corporate sites, portfolios and e‑commerce — engineered to be fast, beautiful and built to grow your business.",
+    "primaryCta": "Start your project",
+    "secondaryCta": "View work"
+  },
+  "trust": {
+    "title": "Trusted by founders and teams who care about the details",
+    "stats": [
+      { "value": "40+", "label": "Projects delivered" },
+      { "value": "100%", "label": "Client satisfaction" },
+      { "value": "5.0", "label": "Average rating" },
+      { "value": "< 24h", "label": "Response time" }
+    ]
+  },
+  "services": {
+    "title": "What we build",
+    "subtitle": "From a single landing page to a full online store — handcrafted with modern tooling.",
+    "items": [
+      { "icon": "rocket", "title": "Landing Pages", "description": "High‑converting one‑page sites for launches, campaigns and products." },
+      { "icon": "briefcase", "title": "Corporate Sites", "description": "Polished multi‑page websites that make your brand look established and trustworthy." },
+      { "icon": "layout", "title": "Portfolio Sites", "description": "Distinctive showcases that turn your work into your best salesperson." },
+      { "icon": "shopping-cart", "title": "E‑Commerce", "description": "Fast, conversion‑focused online stores with smooth checkout and easy management." }
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "subtitle": "A clear, calm process — you always know what happens next.",
+    "steps": [
+      { "title": "Discovery", "description": "We align on your goals, audience and what success looks like." },
+      { "title": "Design", "description": "Premium, on‑brand interfaces designed to convert, reviewed together." },
+      { "title": "Development", "description": "Pixel‑perfect, fast and responsive build with modern tech." },
+      { "title": "Launch", "description": "We ship, measure and hand you the keys — with support after." }
+    ]
+  },
+  "portfolio": {
+    "title": "Selected work",
+    "subtitle": "A few recent projects and the results they delivered.",
+    "viewProject": "View project",
+    "all": "All",
+    "categories": {
+      "landing": "Landing",
+      "corporate": "Corporate",
+      "portfolio": "Portfolio",
+      "ecommerce": "E‑Commerce"
+    },
+    "empty": "Projects will appear here soon."
+  },
+  "pricing": {
+    "title": "Simple, transparent pricing",
+    "subtitle": "Pick a starting point — every project is tailored after a quick chat.",
+    "popular": "Most popular",
+    "cta": "Get started",
+    "plans": [
+      { "name": "Starter", "tagline": "Perfect for a sharp one‑page presence.", "price": "$700", "period": "/ project", "features": ["1‑page landing site", "Responsive & mobile‑first", "Basic SEO setup", "Delivery in ~1 week"] },
+      { "name": "Professional", "tagline": "For brands that need a full website.", "price": "$1,900", "period": "/ project", "highlighted": true, "features": ["Up to 6 pages", "Custom premium design", "CMS so you can edit content", "Advanced SEO & analytics", "2 weeks of support"] },
+      { "name": "E‑Commerce", "tagline": "Start selling online, beautifully.", "price": "$3,500", "period": "/ project", "features": ["Full online store", "Payment & cart integration", "Product management dashboard", "Performance optimized", "30 days of support"] }
+    ]
+  },
+  "about": {
+    "title": "Hi, I build the web — end to end",
+    "body": "I'm a freelance web developer crafting premium, high‑converting websites for founders and brands. I handle everything: strategy, design, development and launch — so you get one accountable partner and a result you're proud of.",
+    "skillsTitle": "Tools & skills"
+  },
+  "testimonials": {
+    "title": "Kind words from clients",
+    "subtitle": "Results speak — and so do the people behind them."
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Everything you need to know before we start.",
+    "items": [
+      { "question": "How long does a project take?", "answer": "A landing page takes about a week; a full website 2–4 weeks depending on scope. You'll get a clear timeline before we start." },
+      { "question": "Do I get to edit the site myself?", "answer": "Yes. I build on a CMS dashboard so you can update text, images, projects and pricing anytime — no code needed." },
+      { "question": "How much does it cost?", "answer": "It depends on scope. The pricing above is a starting point; send a brief and you'll get an exact quote within 24 hours." },
+      { "question": "Do you offer support after launch?", "answer": "Every project includes a support window, and I offer ongoing care plans if you'd like help long‑term." }
+    ]
+  },
+  "contact": {
+    "title": "Let's build something great",
+    "subtitle": "Tell me about your project and you'll get a tailored quote within 24 hours.",
+    "fields": {
+      "name": "Your name",
+      "email": "Email",
+      "projectType": "Project type",
+      "budget": "Budget",
+      "timeline": "Timeline",
+      "message": "Tell me about your project"
+    },
+    "projectTypes": {
+      "landing": "Landing / one‑page",
+      "corporate": "Corporate site",
+      "portfolio": "Portfolio",
+      "ecommerce": "E‑commerce",
+      "other": "Something else"
+    },
+    "budgets": {
+      "tier1": "Under $1k",
+      "tier2": "$1k – $3k",
+      "tier3": "$3k – $7k",
+      "tier4": "$7k+"
+    },
+    "timelines": {
+      "urgent": "Urgent (< 2 weeks)",
+      "month": "Within a month",
+      "quarter": "1–3 months",
+      "flexible": "Flexible"
+    },
+    "placeholderSelect": "Select…",
+    "submit": "Send request",
+    "whatsappCta": "Send via WhatsApp",
+    "messageHeading": "New project request",
+    "submitting": "Sending…",
+    "success": "Thanks! Your request landed. I'll be in touch within 24 hours.",
+    "whatsappSuccess": "Opening WhatsApp… just hit send and we'll talk there.",
+    "error": "Something went wrong. Please try again or message me directly.",
+    "required": "Please fill in the required fields."
+  },
+  "footer": {
+    "tagline": "Premium websites that convert.",
+    "rights": "All rights reserved.",
+    "backToTop": "Back to top",
+    "sections": "Sections",
+    "getInTouch": "Get in touch"
+  },
+  "stickyCta": {
+    "label": "Get a free quote"
+  },
+  "whatsapp": "Chat on WhatsApp",
+  "whatsappMessage": "Hi! 👋 I'd like to talk about a project with Codexa.",
+  "language": "Language",
+  "skipToContent": "Skip to content"
+}

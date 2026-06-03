@@ -1,0 +1,145 @@
+{
+  "nav": {
+    "services": "Hizmetler",
+    "portfolio": "Çalışmalar",
+    "pricing": "Fiyatlandırma",
+    "about": "Hakkımda",
+    "faq": "SSS",
+    "contact": "İletişim",
+    "cta": "Teklif Al"
+  },
+  "hero": {
+    "eyebrow": "Freelance Web Stüdyosu",
+    "title": "Dönüşüm getiren dijital deneyimler",
+    "highlight": "tasarlıyoruz",
+    "subtitle": "Premium tanıtım sayfaları, kurumsal siteler, portföyler ve e‑ticaret — hızlı, etkileyici ve işinizi büyütmek için tasarlandı.",
+    "primaryCta": "Projeni Başlat",
+    "secondaryCta": "Çalışmaları Gör"
+  },
+  "trust": {
+    "title": "Detaya önem veren kurucuların ve ekiplerin tercihi",
+    "stats": [
+      { "value": "40+", "label": "Teslim edilen proje" },
+      { "value": "%100", "label": "Müşteri memnuniyeti" },
+      { "value": "5.0", "label": "Ortalama puan" },
+      { "value": "< 24s", "label": "Yanıt süresi" }
+    ]
+  },
+  "services": {
+    "title": "Neler geliştiriyoruz",
+    "subtitle": "Tek bir tanıtım sayfasından tam bir online mağazaya — modern araçlarla, özenle.",
+    "items": [
+      { "icon": "rocket", "title": "Tanıtım Sayfaları", "description": "Lansman, kampanya ve ürünler için yüksek dönüşümlü tek sayfa siteler." },
+      { "icon": "briefcase", "title": "Kurumsal Siteler", "description": "Markanızı köklü ve güvenilir gösteren, özenle hazırlanmış çok sayfalı web siteleri." },
+      { "icon": "layout", "title": "Portföy Siteleri", "description": "İşinizi en iyi satış elemanınıza dönüştüren özgün vitrinler." },
+      { "icon": "shopping-cart", "title": "E‑Ticaret", "description": "Akıcı ödeme ve kolay yönetimle hızlı, dönüşüm odaklı online mağazalar." }
+    ]
+  },
+  "process": {
+    "title": "Nasıl çalışıyoruz",
+    "subtitle": "Net ve sakin bir süreç — sırada ne olduğunu her zaman bilirsiniz.",
+    "steps": [
+      { "title": "Keşif", "description": "Hedeflerinizi, kitlenizi ve başarının nasıl göründüğünü netleştiririz." },
+      { "title": "Tasarım", "description": "Markaya uygun, dönüşüm için tasarlanmış premium arayüzler — birlikte gözden geçiririz." },
+      { "title": "Geliştirme", "description": "Piksel hassasiyetinde, hızlı ve responsive geliştirme; modern teknolojiyle." },
+      { "title": "Teslim", "description": "Yayına alır, ölçer ve anahtarları size teslim ederiz — sonrasında destekle." }
+    ]
+  },
+  "portfolio": {
+    "title": "Seçili çalışmalar",
+    "subtitle": "Birkaç güncel proje ve getirdikleri sonuçlar.",
+    "viewProject": "Projeyi gör",
+    "all": "Tümü",
+    "categories": {
+      "landing": "Tanıtım",
+      "corporate": "Kurumsal",
+      "portfolio": "Portföy",
+      "ecommerce": "E‑Ticaret"
+    },
+    "empty": "Projeler yakında burada görünecek."
+  },
+  "pricing": {
+    "title": "Basit ve şeffaf fiyatlandırma",
+    "subtitle": "Bir başlangıç noktası seçin — her proje kısa bir görüşmeden sonra size özel şekillenir.",
+    "popular": "En çok tercih edilen",
+    "cta": "Hemen Başla",
+    "plans": [
+      { "name": "Başlangıç", "tagline": "Net bir tek sayfa varlık için ideal.", "price": "₺15.000", "period": "/ proje", "features": ["Tek sayfa tanıtım sitesi", "Responsive & mobil öncelikli", "Temel SEO kurulumu", "~1 haftada teslim"] },
+      { "name": "Profesyonel", "tagline": "Tam bir web sitesine ihtiyaç duyan markalar için.", "price": "₺40.000", "period": "/ proje", "highlighted": true, "features": ["6 sayfaya kadar", "Özel premium tasarım", "İçeriği düzenleyebileceğiniz CMS", "Gelişmiş SEO & analitik", "2 hafta destek"] },
+      { "name": "E‑Ticaret", "tagline": "Online satışa şık bir başlangıç.", "price": "₺75.000", "period": "/ proje", "features": ["Tam online mağaza", "Ödeme & sepet entegrasyonu", "Ürün yönetim paneli", "Performans optimizasyonu", "30 gün destek"] }
+    ]
+  },
+  "about": {
+    "title": "Merhaba, web'i baştan sona ben kuruyorum",
+    "body": "Kurucular ve markalar için premium, yüksek dönüşümlü web siteleri geliştiren freelance bir web geliştiricisiyim. Strateji, tasarım, geliştirme ve yayın — hepsini ben üstleniyorum; böylece tek bir muhatabınız ve gurur duyacağınız bir sonuç oluyor.",
+    "skillsTitle": "Araçlar & yetenekler"
+  },
+  "testimonials": {
+    "title": "Müşterilerden güzel sözler",
+    "subtitle": "Sonuçlar konuşur — arkasındaki insanlar da."
+  },
+  "faq": {
+    "title": "Sık sorulan sorular",
+    "subtitle": "Başlamadan önce bilmeniz gereken her şey.",
+    "items": [
+      { "question": "Bir proje ne kadar sürer?", "answer": "Tanıtım sayfası yaklaşık bir hafta; tam bir web sitesi kapsama göre 2–4 hafta. Başlamadan önce net bir zaman planı alırsınız." },
+      { "question": "Siteyi kendim düzenleyebilir miyim?", "answer": "Evet. Bir CMS paneli üzerinde geliştiriyorum; metinleri, görselleri, projeleri ve fiyatları kod yazmadan istediğiniz zaman güncelleyebilirsiniz." },
+      { "question": "Maliyeti ne kadar?", "answer": "Kapsama bağlı. Yukarıdaki fiyatlar bir başlangıç noktası; bir brief gönderin, 24 saat içinde net teklif alın." },
+      { "question": "Yayından sonra destek veriyor musunuz?", "answer": "Her proje bir destek penceresi içerir; uzun vadeli yardım isterseniz sürekli bakım planları da sunuyorum." }
+    ]
+  },
+  "contact": {
+    "title": "Birlikte harika bir şey inşa edelim",
+    "subtitle": "Projenizi anlatın, 24 saat içinde size özel bir teklif alın.",
+    "fields": {
+      "name": "Adınız",
+      "email": "E‑posta",
+      "projectType": "Proje tipi",
+      "budget": "Bütçe",
+      "timeline": "Zaman",
+      "message": "Projenizden bahsedin"
+    },
+    "projectTypes": {
+      "landing": "Tanıtım / tek sayfa",
+      "corporate": "Kurumsal site",
+      "portfolio": "Portföy",
+      "ecommerce": "E‑ticaret",
+      "other": "Başka bir şey"
+    },
+    "budgets": {
+      "tier1": "₺15k altı",
+      "tier2": "₺15k – ₺40k",
+      "tier3": "₺40k – ₺100k",
+      "tier4": "₺100k+"
+    },
+    "timelines": {
+      "urgent": "Acil (< 2 hafta)",
+      "month": "1 ay içinde",
+      "quarter": "1–3 ay",
+      "flexible": "Esnek"
+    },
+    "placeholderSelect": "Seçin…",
+    "submit": "Talebi Gönder",
+    "whatsappCta": "WhatsApp'tan Gönder",
+    "messageHeading": "Yeni proje talebi",
+    "submitting": "Gönderiliyor…",
+    "success": "Teşekkürler! Talebiniz bize ulaştı. 24 saat içinde dönüş yapacağım.",
+    "whatsappSuccess": "WhatsApp açılıyor… gönder tuşuna bas, oradan devam edelim.",
+    "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin veya doğrudan mesaj gönderin.",
+    "required": "Lütfen zorunlu alanları doldurun."
+  },
+  "footer": {
+    "tagline": "Dönüşüm getiren premium web siteleri.",
+    "rights": "Tüm hakları saklıdır.",
+    "backToTop": "Başa dön",
+    "sections": "Bölümler",
+    "getInTouch": "İletişime geç"
+  },
+  "stickyCta": {
+    "label": "Ücretsiz teklif al"
+  },
+  "whatsapp": "WhatsApp'tan yaz",
+  "whatsappMessage": "Merhaba! 👋 Codexa ile bir proje hakkında konuşmak istiyorum.",
+  "language": "Dil",
+  "skipToContent": "İçeriğe geç"
+}
