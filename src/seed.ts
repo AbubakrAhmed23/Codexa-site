@@ -168,23 +168,48 @@ async function run() {
   await payload.updateGlobal({ slug: 'site-settings', locale: 'tr', overrideAccess: true, data: { tagline: tr.footer.tagline } as never })
   await payload.updateGlobal({ slug: 'site-settings', locale: 'ar', overrideAccess: true, data: { tagline: ar.footer.tagline } as never })
 
-  // Ana sayfa içeriği (global) — hero, istatistikler, süreç, hakkımda (3 dil)
-  const homeData = (d: typeof en) => ({
+  // Ana sayfa içeriği (global) — hero, istatistikler, süreç, hakkımda (3 dil).
+  // processSteps/stats dizileri localized DEĞİL (alt alanları localized) → satırları
+  // önce EN'de oluştur, sonra TR/AR'ı AYNI satır ID'leriyle güncelle.
+  const heroData = (d: typeof en) => ({
     heroEyebrow: d.hero.eyebrow,
     heroTitle: d.hero.title,
     heroHighlight: d.hero.highlight,
     heroSubtitle: d.hero.subtitle,
     primaryCtaLabel: d.hero.primaryCta,
     secondaryCtaLabel: d.hero.secondaryCta,
-    stats: d.trust.stats.map((s) => ({ value: s.value, label: s.label })),
     processTitle: d.process.title,
     processSubtitle: d.process.subtitle,
-    processSteps: d.process.steps.map((s) => ({ title: s.title, description: s.description })),
     aboutTitle: d.about.title,
     aboutBody: d.about.body,
   })
-  for (const [locale, d] of [['en', en], ['tr', tr], ['ar', ar]] as const) {
-    await payload.updateGlobal({ slug: 'home-content', locale, overrideAccess: true, data: homeData(d) as never })
+  await payload.updateGlobal({
+    slug: 'home-content',
+    locale: 'en',
+    overrideAccess: true,
+    data: {
+      ...heroData(en),
+      processSteps: en.process.steps.map((s) => ({ title: s.title, description: s.description })),
+      stats: en.trust.stats.map((s) => ({ value: s.value, label: s.label })),
+    } as never,
+  })
+  const homeDoc = (await payload.findGlobal({ slug: 'home-content', locale: 'en', overrideAccess: true })) as {
+    processSteps?: { id?: string }[]
+    stats?: { id?: string }[]
+  }
+  const stepIds = (homeDoc.processSteps ?? []).map((s) => s.id)
+  const statIds = (homeDoc.stats ?? []).map((s) => s.id)
+  for (const [locale, d] of [['tr', tr], ['ar', ar]] as const) {
+    await payload.updateGlobal({
+      slug: 'home-content',
+      locale,
+      overrideAccess: true,
+      data: {
+        ...heroData(d),
+        processSteps: d.process.steps.map((s, i) => ({ id: stepIds[i], title: s.title, description: s.description })),
+        stats: d.trust.stats.map((s, i) => ({ id: statIds[i], value: s.value, label: s.label })),
+      } as never,
+    })
   }
 
   payload.logger.info('✅ Seed complete.')

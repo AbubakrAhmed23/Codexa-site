@@ -4,8 +4,10 @@ import type { Dictionary } from '@/i18n/dictionaries'
 import type { HomeContent } from '@/lib/types'
 
 export function Process({ dict, content }: { dict: Dictionary; content: HomeContent | null }) {
+  // CMS satırları boşsa (örn. eksik çeviri) varsayılan içeriğe düş.
+  const cmsSteps = (content?.processSteps ?? []).filter((s) => s.title)
   const steps: { title?: string | null; description?: string | null }[] =
-    content?.processSteps?.length ? content.processSteps : dict.process.steps
+    cmsSteps.length ? cmsSteps : dict.process.steps
   const title = content?.processTitle || dict.process.title
   const subtitle = content?.processSubtitle || dict.process.subtitle
 

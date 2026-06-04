@@ -6,7 +6,9 @@ import type { Dictionary } from '@/i18n/dictionaries'
 import type { HomeContent } from '@/lib/types'
 
 export function TrustBar({ dict, content }: { dict: Dictionary; content: HomeContent | null }) {
-  const stats = content?.stats?.length ? content.stats : dict.trust.stats
+  // Etiketi boş olan CMS satırlarını ele; hiç kalmazsa varsayılana düş.
+  const cmsStats = (content?.stats ?? []).filter((s) => s.label)
+  const stats = cmsStats.length ? cmsStats : dict.trust.stats
   const logos = (content?.clientLogos ?? [])
     .map((l) => mediaUrl(l.logo, 'thumbnail'))
     .filter(Boolean) as string[]
