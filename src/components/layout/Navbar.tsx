@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { LogoMark } from '@/components/Logo'
 import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 import { cn } from '@/lib/utils'
 import type { Locale } from '@/i18n/config'
@@ -74,15 +75,13 @@ export function Navbar({
           )}
         >
           {/* Marka */}
-          <Link href={home} className="flex items-center gap-2.5 font-semibold tracking-tight">
+          <Link href={home} className="group flex items-center gap-2.5 font-semibold tracking-tight">
             {logoUrl ? (
-              <Image src={logoUrl} alt={brandName} width={28} height={28} className="size-7 rounded-md object-contain" />
+              <Image src={logoUrl} alt={brandName} width={32} height={32} className="size-8 rounded-lg object-contain" />
             ) : (
-              <span className="grid size-7 place-items-center rounded-lg bg-gradient-to-br from-accent to-accent-2 text-sm font-bold text-white">
-                {brandName.charAt(0)}
-              </span>
+              <LogoMark className="size-8 transition-transform duration-300 group-hover:scale-105" />
             )}
-            <span className="text-[1.05rem]">{brandName}</span>
+            <span className="text-[1.15rem]">{brandName}</span>
           </Link>
 
           {/* Masaüstü linkler */}
@@ -139,7 +138,10 @@ export function Navbar({
           )}
         >
           <div className="mb-4 flex items-center justify-between">
-            <span className="font-semibold">{brandName}</span>
+            <span className="flex items-center gap-2.5 font-semibold tracking-tight">
+              <LogoMark className="size-8" />
+              {brandName}
+            </span>
             <button
               type="button"
               onClick={() => setOpen(false)}

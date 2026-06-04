@@ -12,6 +12,7 @@ import {
   FaWhatsapp,
 } from 'react-icons/fa6'
 import { Container } from '@/components/ui/section'
+import { LogoMark } from '@/components/Logo'
 import type { Dictionary } from '@/i18n/dictionaries'
 import type { Locale } from '@/i18n/config'
 import type { SiteSettings } from '@/lib/types'
@@ -57,10 +58,8 @@ export function Footer({
           {/* Marka */}
           <div className="max-w-sm">
             <Link href={`/${locale}`} className="flex items-center gap-2.5 font-semibold tracking-tight">
-              <span className="grid size-7 place-items-center rounded-lg bg-gradient-to-br from-accent to-accent-2 text-sm font-bold text-white">
-                {brand.charAt(0)}
-              </span>
-              <span className="text-[1.05rem]">{brand}</span>
+              <LogoMark className="size-8" />
+              <span className="text-[1.15rem]">{brand}</span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted">{tagline}</p>
             {socials.length > 0 && (
